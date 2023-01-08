@@ -1,9 +1,7 @@
 package com.bridgelabz;
 import org.junit.Assert;
 import org.junit.Test;
-
 public class InvoiceServiceTest {
-
     @Test
     public void givenDistanceAndTime_ShouldReturnTotalFare() {
         CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
@@ -27,4 +25,5 @@ public class InvoiceServiceTest {
         double fare = invoiceGenerator.calculateFare(distance, time);
         Assert.assertEquals(5.0, fare,0.0);
     }
+
 }
