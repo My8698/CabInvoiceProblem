@@ -11,7 +11,7 @@ public class InvoiceServiceTest {
         /**
          * Calculating the fair
          */
-        double fare = invoiceGenerator.calculateFare(distance, time);
+        double fare = invoiceGenerator.calculateFare(distance,time);
         Assert.assertEquals(25.0, fare,0.0);
     }
     /*
@@ -25,5 +25,30 @@ public class InvoiceServiceTest {
         double fare = invoiceGenerator.calculateFare(distance, time);
         Assert.assertEquals(5.0, fare,0.0);
     }
-
+    /*
+   Step 3 Test Case For Mutiple rides
+    */
+    @Test
+    public void givenMultipleRidees_ShouldReturnTotalFare(){
+        CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
+        Ride[] rides = {new Ride(2.0,5),
+                new Ride(0.1,1)};
+        double fare = invoiceGenerator.calculateFare(rides);
+        Assert.assertEquals(30.0,fare,0.0);
+    }
+    /*
+    Step 4 - Enhanced Invoice
+    calculating total number of rides
+    total fare
+    Avrage fare per Ride
+     */
+    @Test
+    public void givenMultipleRidesShouldReturnRideSummary() {
+        CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
+        Ride[] rides = {new Ride(2.0, 5),
+                new Ride(0.1, 1)};
+        InvoiceSummary summary = invoiceGenerator.getInvoiceSummary(rides);
+        InvoiceSummary expectedInvoicesummary = new InvoiceSummary(2, 30.0);
+        Assert.assertEquals(expectedInvoicesummary, summary);
+    }
 }
